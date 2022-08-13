@@ -45,12 +45,12 @@ folder "esp_link_driver" have three driver
 
 ## step 5: clone demo source code
 ```
-git clone https://github.com/dtlzp/relay-demo.git relay-demo
+git clone https://github.com/dtlzp/relay-dev-demo.git relay-dev-demo
 ```
 
 ## step 6: update demo source code
 ```
-cd relay-demo
+cd relay-dev-demo
 git pull
 ```
 
@@ -66,7 +66,7 @@ git pull
 ```
 - compile "gpio" demo
 ```
-cd relay-demo
+cd relay-dev-demo
 cd gpio
 make.bat a
 make.bat fm
