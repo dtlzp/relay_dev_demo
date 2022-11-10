@@ -26,11 +26,11 @@ This Demo source for [Dingtian Relay Development Board](https://www.dingtian-tec
 - <font color="red">Notice: </font>when you order <font color="red">Development Board</font>,please leave a message to the seller "<font color="red">I need development board, thanks</font>"
 
 ## Dingtian Relay Development Board GPIO pinout and PHY datasheet
-- [GPIO pinout](https://github.com/dtlzp/gpio_pinout)
-- [datasheet](https://github.com/dtlzp/datasheet)
+- [GPIO pinout](https://github.com/dtlzp/relay_dev_demo/tree/main/gpio_pinout)
+- [datasheet](https://github.com/dtlzp/relay_dev_demo/tree/main/datasheet)
 
 ## PHY JL1101
-- PHY [JL1101](https://github.com/dtlzp/datasheet/PHY_JL1101_compatible_RTL8201F.pdf) is compatible with RTL8201F only ID different,[driver link](https://github.com/dtlzp/relay_dev_demo/blob/main/esp-idf-dt-patch/components/esp_eth/src/esp_eth_phy_jl1101.c)
+- PHY [JL1101](https://github.com/dtlzp/relay_dev_demo/blob/main/datasheet/PHY_JL1101_compatible_RTL8201F.pdf) is compatible with RTL8201F only ID different,[driver link](https://github.com/dtlzp/relay_dev_demo/blob/main/esp-idf-dt-patch/components/esp_eth/src/esp_eth_phy_jl1101.c)
 
 ## step 1: install ESP-IDF
 - Espressif DOC [ESP-IDF Get Started](https://docs.espressif.com/projects/esp-idf/en/v4.3.3/esp32/get-started/index.html)
