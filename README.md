@@ -23,6 +23,14 @@ This Demo source for [Dingtian Relay Development Board](https://www.dingtian-tec
 - [Dingtian Aliexpress Store](https://www.aliexpress.com/item/4000999069820.html)
 - [Dingtian Aliexpress Official Store](https://www.aliexpress.com/item/2255801046476492.html)
 - [Dingtian Alibaba Store](https://dingtiantech.en.alibaba.com/)
+- <font color="red">Notice: </font>when you order <font color="red">Development Board</font>,please leave a message to the seller "<font color="red">I need development board, thanks</font>"
+
+## Dingtian Relay Development Board GPIO pinout and PHY datasheet
+- [GPIO pinout](https://github.com/dtlzp/gpio_pinout)
+- [datasheet](https://github.com/dtlzp/datasheet)
+
+## PHY JL1101
+- PHY [JL1101](https://github.com/dtlzp/datasheet/PHY_JL1101_compatible_RTL8201F.pdf) is compatible with RTL8201F only ID different,[driver link](https://github.com/dtlzp/relay_dev_demo/blob/main/esp-idf-dt-patch/components/esp_eth/src/esp_eth_phy_jl1101.c)
 
 ## step 1: install ESP-IDF
 - Espressif DOC [ESP-IDF Get Started](https://docs.espressif.com/projects/esp-idf/en/v4.3.3/esp32/get-started/index.html)
@@ -45,12 +53,12 @@ folder "esp_link_driver" have three driver
 
 ## step 5: clone demo source code
 ```
-git clone https://github.com/dtlzp/relay-dev-demo.git relay-dev-demo
+git clone https://github.com/dtlzp/relay_dev_demo.git relay_dev_demo
 ```
 
 ## step 6: update demo source code
 ```
-cd relay-dev-demo
+cd relay_dev_demo
 git pull
 ```
 
@@ -66,7 +74,7 @@ git pull
 ```
 - compile "gpio" demo
 ```
-cd relay-dev-demo
+cd relay_dev_demo
 cd gpio
 make.bat a
 make.bat fm
