@@ -20,7 +20,9 @@ do \
 { \
     VGPIO_ENTER_CRITICAL(); \
     vpio_refresh((igpio), (ogpio), (i_bytes), (o_bytes)); \
-    HC595165_PL(DT_LOW);\
+    if( FALSE == g_dt.hw_165_pl ) { \
+        HC595165_PL(DT_LOW); \
+    } \
     VGPIO_EXIT_CRITICAL(); \
 }while(0)
 

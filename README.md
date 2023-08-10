@@ -68,9 +68,12 @@ git pull
 ```
 //#define DT_2CH  1
 //#define DT_4CH  1
-//#define DT_8CH  1
-#define DT_16CH 1
-//#define DT_32CH 1
+//#define DT_8CH  1    /* for hw version < v3.6.11 */
+//#define DT_16CH 1    /* for hw version < v3.6.0 */
+//#define DT_32CH 1    /* for hw version < v3.4.0 */
+//#define DT_8CH_V2  1    /* for hw version >= v3.6.11 */
+//#define DT_16CH_V2 1    /* for hw version >= v3.6.0 */
+#define DT_32CH_V2 1    /* for hw version >= v3.4.0 */
 ```
 - compile "gpio" demo
 ```

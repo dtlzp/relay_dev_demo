@@ -1,10 +1,10 @@
 
 /**
- * Copyright (c) 2022 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
+ * Copyright (c) 2023 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
  * website: www.dingtian-tech.com
  * author: lzp<lzp@dingtian-tech.com>
  * sales: stephen liu<stephen@dingtian-tech.com>
- * date: 2022/6/20
+ * date: 2023/7/28
  * file: gpio_test.h
  * function: Input,Relay,Factory button/led macro define
  */
@@ -20,7 +20,9 @@ do \
 { \
     VGPIO_ENTER_CRITICAL(); \
     vpio_refresh((igpio), (ogpio), (i_bytes), (o_bytes)); \
-    HC595165_PL(DT_LOW);\
+    if( FALSE == g_dt.hw_165_pl ) { \
+        HC595165_PL(DT_LOW); \
+    } \
     VGPIO_EXIT_CRITICAL(); \
 }while(0)
 

@@ -1,10 +1,10 @@
  
 /**
- * Copyright (c) 2022 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
+ * Copyright (c) 2023 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
  * website: www.dingtian-tech.com
  * author: lzp<lzp@dingtian-tech.com>
  * sales: stephen liu<stephen@dingtian-tech.com>
- * date: 2022/6/20
+ * date: 2023/7/28
  * file: gpio_test.c
  * function: Input,Relay,Factory button/led gpio demo source code
  */
@@ -141,7 +141,9 @@ void vpio_refresh(u8_t *igpio, u8_t *ogpio, u8_t i_bytes, u8_t o_bytes)
     s32_t i;
 
     HC595165_RCK(DT_LOW);
-    HC595165_PL(DT_HIGH);
+    if( FALSE == g_dt.hw_165_pl ) {
+        HC595165_PL(DT_HIGH);
+    }
     if( i_bytes > 0 )
     {
         for(i=0; i<o_bytes; i++)
@@ -270,6 +272,9 @@ void vpio_init(dt_io_t *iox)
         io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
         io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
         gpio_config(&io_conf);
+        if( TRUE == g_dt.hw_165_pl ) {
+            HC595165_EN(DT_LOW);
+        }
     }
 }
 

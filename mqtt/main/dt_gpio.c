@@ -145,7 +145,9 @@ void vpio_refresh(u8_t *igpio, u8_t *ogpio, u8_t i_bytes, u8_t o_bytes)
     s32_t i;
 
     HC595165_RCK(DT_LOW);
-    HC595165_PL(DT_HIGH);
+    if( FALSE == g_dt.hw_165_pl ) {
+        HC595165_PL(DT_HIGH);
+    }
     if( i_bytes > 0 )
     {
         for(i=0; i<o_bytes; i++)
@@ -274,6 +276,9 @@ void vpio_init(dt_io_t *iox)
         io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
         io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
         gpio_config(&io_conf);
+        if( TRUE == g_dt.hw_165_pl ) {
+            HC595165_EN(DT_LOW);
+        }
     }
 }
 

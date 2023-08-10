@@ -1,10 +1,10 @@
 
 /**
- * Copyright (c) 2022 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
+ * Copyright (c) 2023 Shenzhen Dingtian Technologies Co.,Ltd All rights reserved.
  * website: www.dingtian-tech.com
  * author: lzp<lzp@dingtian-tech.com>
  * sales: stephen liu<stephen@dingtian-tech.com>
- * date: 2022/6/20
+ * date: 2023/7/28
  * file: dt_device_tree.h
  * function: gpio define
  */
@@ -63,6 +63,7 @@ typedef struct _ddt_t
     u8_t gpio_factory_run_led;
     u8_t gpio_phyrst;
 
+    u8_t hw_165_pl;
     u8_t gpio_595165_pl;
     u8_t gpio_595165_rck;
     u8_t gpio_595165_sdi;
@@ -74,6 +75,7 @@ typedef struct _ddt_t
 }ddt_t;
 
 #define HC595165_PL(x)     gpio_set_level(g_dt.gpio_595165_pl, (x))
+#define HC595165_EN(x)     gpio_set_level(g_dt.gpio_595165_pl, (x))
 #define HC595165_RCK(x)    gpio_set_level(g_dt.gpio_595165_rck, (x))
 #define HC595165_CLK(x)    gpio_set_level(g_dt.gpio_595165_clk, (x))
 #define HC595165_SDI(x)    gpio_set_level(g_dt.gpio_595165_sdi, (x))
@@ -90,6 +92,7 @@ typedef struct _ddt_t
     .gpio_wiegand= {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_input  = {36, 39, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_output = {16, 2,  GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = FALSE,\
     .gpio_595165_pl     = GPIO_NULL,\
     .gpio_595165_rck    = GPIO_NULL,\
     .gpio_595165_sdi    = GPIO_NULL,\
@@ -114,6 +117,7 @@ typedef struct _ddt_t
     .gpio_wiegand= {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_input  = {36, 39, 33, 35, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_output = {16, 2,  32, 12, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = FALSE,\
     .gpio_595165_pl     = GPIO_NULL,\
     .gpio_595165_rck    = GPIO_NULL,\
     .gpio_595165_sdi    = GPIO_NULL,\
@@ -138,6 +142,7 @@ typedef struct _ddt_t
     .gpio_wiegand= {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = FALSE,\
     .gpio_595165_pl     = 32,\
     .gpio_595165_rck    = 15,\
     .gpio_595165_sdi    = 13,\
@@ -162,6 +167,7 @@ typedef struct _ddt_t
     .gpio_wiegand= {36, 39, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = FALSE,\
     .gpio_595165_pl     = 0,\
     .gpio_595165_rck    = 15,\
     .gpio_595165_sdi    = 13,\
@@ -186,6 +192,7 @@ typedef struct _ddt_t
     .gpio_wiegand= {36, 39, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
     .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = FALSE,\
     .gpio_595165_pl     = 0,\
     .gpio_595165_rck    = 15,\
     .gpio_595165_sdi    = 13,\
@@ -198,6 +205,81 @@ typedef struct _ddt_t
     .rtc_sda = 16,\
 }
 #define DDT_DEF_VALUE()   DDT_32I_32O_VALUE()
+
+#elif (1 == DT_8CH_V2)
+#define DT_I_CNT   (8)
+#define DT_R_CNT   DT_I_CNT
+#define DDT_8I_8O_V2_VALUE() \
+{ \
+    .gpio_factory = 34,\
+    .rs485_de = 33,\
+    .is_vpio = TRUE,\
+    .gpio_wiegand= {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = TRUE,\
+    .gpio_595165_pl     = 32,\
+    .gpio_595165_rck    = 15,\
+    .gpio_595165_sdi    = 13,\
+    .gpio_595165_q7     = 16,\
+    .gpio_595165_clk    = 14,\
+    .gpio_factory_run_led = 2,\
+    .factory_run_led_level = DT_HIGH,\
+    .gpio_phyrst = 0,\
+    .rtc_scl = GPIO_NULL,\
+    .rtc_sda = GPIO_NULL,\
+}
+#define DDT_DEF_VALUE()   DDT_8I_8O_V2_VALUE()
+
+#elif (1 == DT_16CH_V2)
+#define DT_I_CNT   (16)
+#define DT_R_CNT   DT_I_CNT
+#define DDT_16I_16O_V2_VALUE() \
+{ \
+    .gpio_factory = 34,\
+    .rs485_de = 33,\
+    .is_vpio = TRUE,\
+    .gpio_wiegand= {36, 39, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = TRUE,\
+    .gpio_595165_pl     = 0,\
+    .gpio_595165_rck    = 15,\
+    .gpio_595165_sdi    = 13,\
+    .gpio_595165_q7     = 35,\
+    .gpio_595165_clk    = 14,\
+    .gpio_factory_run_led = 2,\
+    .factory_run_led_level = DT_HIGH,\
+    .gpio_phyrst = 12,\
+    .rtc_scl = 32,\
+    .rtc_sda = 16,\
+}
+#define DDT_DEF_VALUE()   DDT_16I_16O_V2_VALUE()
+
+#elif (1 == DT_32CH_V2)
+#define DT_I_CNT   (32)
+#define DT_R_CNT   DT_I_CNT
+#define DDT_32I_32O_V2_VALUE() \
+{ \
+    .gpio_factory = 34,\
+    .rs485_de = 33,\
+    .is_vpio = TRUE,\
+    .gpio_wiegand= {36, 39, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_input  = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .gpio_output = {GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL, GPIO_NULL},\
+    .hw_165_pl          = TRUE,\
+    .gpio_595165_pl     = 0,\
+    .gpio_595165_rck    = 15,\
+    .gpio_595165_sdi    = 13,\
+    .gpio_595165_q7     = 35,\
+    .gpio_595165_clk    = 14,\
+    .gpio_factory_run_led = 2,\
+    .factory_run_led_level = DT_HIGH,\
+    .gpio_phyrst = 12,\
+    .rtc_scl = 32,\
+    .rtc_sda = 16,\
+}
+#define DDT_DEF_VALUE()   DDT_32I_32O_V2_VALUE()
 
 #else
 #error "please define channel DT_2CH/DT_4CH/DT_8CH/DT_16CH/DT_32CH"
